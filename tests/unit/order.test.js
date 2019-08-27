@@ -1,5 +1,7 @@
 const Order = require('../../src/order')
 
+let order;
+
 let mockRequest = {
   "order": {
       "id": 12345,
@@ -31,26 +33,27 @@ mockItemCreater.mockImplementation(function() {
 
 
 describe('Order', () => {
+
+  beforeEach(() => {
+    order = new Order(mockRequest)
+  });
+
   it('recieves an order', () => {
-    var order = new Order(mockRequest)
     expect(order.request.order.id).toBe(12345)
   })
 
   it('creates a number of item objects', () => {
-    var order = new Order(mockRequest);
     order.createItems(mockItemCreater);
     expect(mockItemCreater.mock.calls.length).toBe(3);
     expect(order.items.length).toBe(3);
   })
 
   it('calculates a total order price', () => {
-    var order = new Order(mockRequest);
     order.createItems(mockItemCreater);
     expect(order.totalPrice()).toBe(30)
   })
 
   it('calculates the total vat on an order', () => {
-    var order = new Order(mockRequest);
     order.createItems(mockItemCreater);
     expect(order.totalVat()).toBe(6)
   })

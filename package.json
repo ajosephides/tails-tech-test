@@ -1,0 +1,15 @@
+{
+  "name": "tailstechtest",
+  "version": "1.0.0",
+  "description": "Tech test practise in JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "author": "ajosephides",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jest": "^24.9.0"
+  }
+}

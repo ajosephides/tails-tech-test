@@ -15,8 +15,17 @@ module.exports = class Order{
   totalPrice(){
     let total = 0;
     this.items.forEach(item => {
-      total += item.price
-        })
-        return total;
-      }
+      total += item.price;
+    });
+    return total;
+  }
+
+  totalVat(){
+    let total = 0;
+    this.items.forEach(item => {
+      total += item.vat;
+    });
+    return total;
+  }
+
   }

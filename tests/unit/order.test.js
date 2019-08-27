@@ -25,7 +25,8 @@ let mockItemCreater = jest.fn()
 mockItemCreater.mockImplementation(function() {
     this.product_id = 1,
     this.quantity = 1,
-    this.price = 10
+    this.price = 10,
+    this.vat = 2
 })
 
 
@@ -45,8 +46,13 @@ describe('Order', () => {
   it('calculates a total order price', () => {
     var order = new Order(mockRequest);
     order.createItems(mockItemCreater);
-    // console.log(order.items[0].price)
     expect(order.totalPrice()).toBe(30)
+  })
+
+  it('calculates the total vat on an order', () => {
+    var order = new Order(mockRequest);
+    order.createItems(mockItemCreater);
+    expect(order.totalVat()).toBe(6)
   })
 
 })

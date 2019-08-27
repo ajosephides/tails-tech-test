@@ -22,6 +22,12 @@ let mockRequest = {
 }
 
 let mockItemCreater = jest.fn()
+mockItemCreater.mockImplementation(function() {
+    this.product_id = 1,
+    this.quantity = 1,
+    this.price = 10
+})
+
 
 describe('Order', () => {
   it('recieves an order', () => {
@@ -34,6 +40,13 @@ describe('Order', () => {
     order.createItems(mockItemCreater);
     expect(mockItemCreater.mock.calls.length).toBe(3);
     expect(order.items.length).toBe(3);
+  })
+
+  it('calculates a total order price', () => {
+    var order = new Order(mockRequest);
+    order.createItems(mockItemCreater);
+    // console.log(order.items[0].price)
+    expect(order.totalPrice()).toBe(30)
   })
 
 })

@@ -20,7 +20,7 @@ module.exports = class Item {
   }
 
   getPrice(){
-    return this.findItemPrice() * this.quantity
+    return (this.findItemPrice() * this.quantity).toFixed(2)
   }
 
   findVatBand(){
@@ -40,7 +40,7 @@ module.exports = class Item {
   }
 
   getVat(){
-    return this.price * this.findVatRate()
+    return (this.price * this.findVatRate()).toFixed(2)
   }
 
 

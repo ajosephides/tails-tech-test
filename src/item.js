@@ -6,6 +6,7 @@ module.exports = class Item {
     this.id = id
     this.quantity = quantity
     this.price = this.getPrice()
+    this.vat = this.getVat()
   }
 
   findItemPrice(){
@@ -20,6 +21,26 @@ module.exports = class Item {
 
   getPrice(){
     return this.findItemPrice() * this.quantity
+  }
+
+  findVatBand(){
+    let vatBand;
+    Pricing.prices.forEach(item => {
+      if(item.product_id === this.id){
+        vatBand = item.vat_band
+      }
+    })
+    return vatBand
+  }
+
+  findVatRate(){
+    let vatBand = this.findVatBand()
+    let vatRate = Pricing.vat_bands[vatBand]
+    return vatRate
+  }
+
+  getVat(){
+    return this.price * this.findVatRate()
   }
 
 

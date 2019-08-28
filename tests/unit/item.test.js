@@ -6,4 +6,9 @@ describe('Item', () => {
     expect(item.price).toBe(1250)
   })
 
+  it('calculates the vat correctly on a 0 vat item', () => {
+    let item = new Item(2, 5);
+    expect(item.vat).toBe(0)
+  })
+
 })

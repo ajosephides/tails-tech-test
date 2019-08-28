@@ -3,7 +3,7 @@ const Pricing = require('../data/pricing.json')
 module.exports = class Item {
 
   constructor(id, quantity){
-    this.id = id
+    this.product_id = id
     this.quantity = quantity
     this.price = this.getPrice()
     this.vat = this.getVat()
@@ -12,7 +12,7 @@ module.exports = class Item {
   findItemPrice(){
     let itemPrice = 0;
     Pricing.prices.forEach(item => {
-      if(item.product_id === this.id){
+      if(item.product_id === this.product_id){
         itemPrice = item.price
       }
     })
@@ -20,13 +20,13 @@ module.exports = class Item {
   }
 
   getPrice(){
-    return (this.findItemPrice() * this.quantity).toFixed(2)
+    return Math.round(this.findItemPrice() * this.quantity)
   }
 
   findVatBand(){
     let vatBand;
     Pricing.prices.forEach(item => {
-      if(item.product_id === this.id){
+      if(item.product_id === this.product_id){
         vatBand = item.vat_band
       }
     })
@@ -40,7 +40,7 @@ module.exports = class Item {
   }
 
   getVat(){
-    return (this.price * this.findVatRate()).toFixed(2)
+    return Math.round(this.price * this.findVatRate())
   }
 
 

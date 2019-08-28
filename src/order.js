@@ -1,3 +1,5 @@
+const Item = require('./item')
+
 module.exports = class Order{
 
   constructor(order, item = Item){

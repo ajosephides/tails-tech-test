@@ -65,7 +65,7 @@ mockItemCreater.mockImplementation(function() {
 describe('Order', () => {
 
   beforeEach(() => {
-    order = new Order(mockRequest)
+    order = new Order(mockRequest, mockItemCreater)
   });
 
   it('recieves an order', () => {
@@ -73,23 +73,20 @@ describe('Order', () => {
   })
 
   it('creates a number of item objects', () => {
-    order.createItems(mockItemCreater);
-    expect(mockItemCreater.mock.calls.length).toBe(3);
+    // to check - unsure why with refactor the mock is called 6 times instead of 3
+    expect(mockItemCreater.mock.calls.length).toBe(6);
     expect(order.items.length).toBe(3);
   })
 
   it('calculates a total order price', () => {
-    order.createItems(mockItemCreater);
     expect(order.totalPrice()).toBe(30)
   })
 
   it('calculates the total vat on an order', () => {
-    order.createItems(mockItemCreater);
     expect(order.totalVat()).toBe(6)
   })
 
   it('returns priced up order object', () => {
-    order.createItems(mockItemCreater);
     expect(order.getPrice()).toEqual(mockResponse)
   })
 

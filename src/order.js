@@ -1,11 +1,11 @@
 module.exports = class Order{
 
-  constructor(order){
+  constructor(order, item = Item){
     this.request = order;
-    this.items;
+    this.items = this.createItems(item);
   }
 
-  createItems(newItem = Item){
+  createItems(newItem){
     return this.items = this.request.order.items.map(item => {
       var item = new newItem(item.product_id, item.quantity)
       return item

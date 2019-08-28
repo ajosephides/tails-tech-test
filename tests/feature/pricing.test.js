@@ -1,4 +1,6 @@
-const App =  require('../../app');
+const returnPrices =  require('../../app');
+
+// console.log(App)
 
 let mockRequest = {
   "order": {
@@ -29,31 +31,31 @@ let expectedResponse = {
           {
               "product_id": 1,
               "quantity": 1,
-              "itemPrice": 599,
-              "itemVat": 119.8
+              "price": 599,
+              "vat": 120
           },
           {
               "product_id": 2,
               "quantity": 5,
-              "itemPrice": 1250,
-              "itemVat": 0
+              "price": 1250,
+              "vat": 0
           },
           {
               "product_id": 3,
               "quantity": 1,
-              "itemPrice": 250,
-              "itemVat": 0
+              "price": 250,
+              "vat": 0
           }
       ],
       "totalPrice": 2099,
-      "totalVat": 119.8
+      "totalVat": 120
   }
 }
 
 describe('feature test', () => {
 
-  it.skip('gives the expected item and order prices', () => {
-    expect(App.returnPrices()).toEqual(expectedResponse);
+  it('gives the expected item and order prices', () => {
+    expect(returnPrices(mockRequest)).toEqual(expectedResponse);
   })
 
 })

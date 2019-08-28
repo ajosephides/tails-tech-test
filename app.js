@@ -7,6 +7,3 @@ module.exports = function returnPrices(requestData){
   var order = new Order(requestData);
   return order.getPrice()
 };
-
-// returnPrices();
-// module.exports = returnPrices

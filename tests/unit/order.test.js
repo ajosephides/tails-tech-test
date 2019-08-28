@@ -23,6 +23,36 @@ let mockRequest = {
   }
 }
 
+let mockResponse = {
+  "order": {
+      "id": 12345,
+      "customer": {},
+      "items": [
+          {
+              "product_id": 1,
+              "quantity": 1,
+              "price": 10,
+              "vat": 2
+          },
+          {
+              "product_id": 1,
+              "quantity": 1,
+              "price": 10,
+              "vat": 2
+          },
+          {
+              "product_id": 1,
+              "quantity": 1,
+              "price": 10,
+              "vat": 2
+          }
+      ],
+      "totalPrice": 30,
+      "totalVat": 6
+  }
+}
+
+
 let mockItemCreater = jest.fn()
 mockItemCreater.mockImplementation(function() {
     this.product_id = 1,
@@ -56,6 +86,11 @@ describe('Order', () => {
   it('calculates the total vat on an order', () => {
     order.createItems(mockItemCreater);
     expect(order.totalVat()).toBe(6)
+  })
+
+  it('returns priced up order object', () => {
+    order.createItems(mockItemCreater);
+    expect(order.getPrice()).toEqual(mockResponse)
   })
 
 })

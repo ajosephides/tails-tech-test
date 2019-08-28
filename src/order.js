@@ -28,4 +28,17 @@ module.exports = class Order{
     return total;
   }
 
+  getPrice(){
+    let order = {
+      "order": {
+      "id": 12345,
+      "customer": {},
+      "items": this.items,
+      "totalPrice": this.totalPrice(),
+      "totalVat": this.totalVat()
+      }
+    }
+    return order;
   }
+
+}

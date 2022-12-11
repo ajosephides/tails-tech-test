@@ -9,7 +9,7 @@
   "author": "ajosephides",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "jest": "^24.9.0"
   }
 }
